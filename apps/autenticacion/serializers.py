@@ -2,6 +2,16 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import Usuario, PerfilUsuario
 
+class UsuarioSerializer(serializers.ModelSerializer):
+    """Serializer básico para Usuario - usado por otros módulos"""
+    nombre_completo = serializers.CharField(source='get_full_name', read_only=True)
+    
+    class Meta:
+        model = Usuario
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 
+                 'telefono', 'is_active', 'date_joined', 'nombre_completo']
+        read_only_fields = ['id', 'date_joined', 'nombre_completo']
+
 class SerializadorRegistroUsuario(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, label="Contraseña")
     confirmar_password = serializers.CharField(write_only=True, label="Confirmar Contraseña")
