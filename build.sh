@@ -1,16 +1,19 @@
-# Build script para Render
 #!/usr/bin/env bash
-# exit on error
+# Build script para Render
 set -o errexit
 
-# Instalar dependencias
+echo "🚀 Iniciando build para Render..."
+
+echo "📦 Instalando dependencias..."
 pip install -r requirements.txt
 
-# Ejecutar migraciones
+echo "📊 Ejecutando migraciones..."
 python manage.py migrate --settings=smart_condominium.settings.production
 
-# Recolectar archivos estáticos
+echo "📁 Recolectando archivos estáticos..."
 python manage.py collectstatic --noinput --settings=smart_condominium.settings.production
 
-# Crear usuarios predeterminados
+echo "👥 Creando usuarios predeterminados..."
 python manage.py create_default_users --settings=smart_condominium.settings.production
+
+echo "✅ Build completado exitosamente!"

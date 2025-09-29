@@ -5,10 +5,9 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
-from dotenv import load_dotenv
+import os
 
-# Cargar variables de entorno desde .env
-load_dotenv()
+# Para compatibilidad con diferentes entornos
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
