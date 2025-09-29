@@ -27,18 +27,24 @@ COPY . .
 # Crear directorio para archivos estáticos
 RUN mkdir -p staticfiles
 
-# Crear directorio para logs
-RUN mkdir -p /var/log/django
+# Crear directorio para logs y dar permisos
+RUN mkdir -p /var/log/django && chmod 777 /var/log/django
 
 # Recolectar archivos estáticos
 RUN python manage.py collectstatic --noinput --settings=smart_condominium.settings.production
 
+# Copiar scripts y dar permisos
+COPY entrypoint.sh /entrypoint.sh
+COPY load_initial_data.py /app/load_initial_data.py
+RUN chmod +x /entrypoint.sh
+RUN chmod +x /app/load_initial_data.py
+
 # Crear usuario no-root
-RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
+RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app && chown -R appuser /var/log/django
 USER appuser
 
 # Exponer puerto
 EXPOSE 8000
 
 # Comando de inicio
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "smart_condominium.wsgi:application"]
+ENTRYPOINT ["/entrypoint.sh"]

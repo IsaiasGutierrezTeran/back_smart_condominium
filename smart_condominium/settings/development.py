@@ -16,7 +16,7 @@ DATABASES = {
         'NAME': 'condominiobd',
         'USER': 'postgres',
         'PASSWORD': '250203is',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }

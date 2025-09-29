@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     build: .
@@ -7,11 +5,12 @@ services:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=smart_condominium.settings.production
-      - DB_NAME=condominium_db
+      - DB_NAME=condominiobd
       - DB_USER=postgres
-      - DB_PASSWORD=yourpassword
+      - DB_PASSWORD=postgres
       - DB_HOST=db
       - DB_PORT=5432
+      - DB_SSLMODE=disable
     depends_on:
       - db
       - redis
@@ -20,15 +19,15 @@ services:
       - ./staticfiles:/app/staticfiles
 
   db:
-    image: postgres:15
+    image: postgres:17
     environment:
-      - POSTGRES_DB=condominium_db
+      - POSTGRES_DB=condominiobd
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=yourpassword
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   redis:
     image: redis:7-alpine
