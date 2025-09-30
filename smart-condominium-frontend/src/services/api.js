@@ -1,6 +1,6 @@
 // Smart Condominium - Configuración API
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import toast from 'react-hot-toast';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://back-smart-condominium-1.onrender.com';

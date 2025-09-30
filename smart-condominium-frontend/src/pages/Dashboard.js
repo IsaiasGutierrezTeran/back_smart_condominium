@@ -1,6 +1,6 @@
 // Smart Condominium - Dashboard Principal
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
 import { useAuth } from '../contexts/AuthContext';

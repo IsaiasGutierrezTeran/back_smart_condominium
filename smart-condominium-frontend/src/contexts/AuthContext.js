@@ -1,6 +1,6 @@
 // Smart Condominium - Context de Autenticación
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import authService from '../services/authService';
 import toast from 'react-hot-toast';
 

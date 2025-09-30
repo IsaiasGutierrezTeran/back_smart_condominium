@@ -1,5 +1,5 @@
 // Smart Condominium - Hook para llamadas a la API
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api, { handleApiError } from '../services/api';
 

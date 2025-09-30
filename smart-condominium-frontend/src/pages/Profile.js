@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import {
   Container,
-  Paper,
   Typography,
   Box,
   TextField,
@@ -14,7 +13,7 @@ import {
   Divider,
   Alert,
 } from '@mui/material';
-import { Person, Edit, Save, Cancel } from '@mui/icons-material';
+import { Edit, Save, Cancel } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 import { useAuth } from '../contexts/AuthContext';

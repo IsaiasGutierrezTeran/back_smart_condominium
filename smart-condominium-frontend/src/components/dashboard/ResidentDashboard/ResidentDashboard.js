@@ -1,6 +1,6 @@
 // Smart Condominium - Dashboard de Residente
 import React from 'react';
-import { Grid, Card, CardContent, Typography, Box, Button, Chip } from '@mui/material';
+import { Grid, Card, CardContent, Typography, Box, Button } from '@mui/material';
 import {
   AccountBalanceWallet,
   EventAvailable,
