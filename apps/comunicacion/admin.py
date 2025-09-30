@@ -61,13 +61,23 @@ class AdminNotificacion(admin.ModelAdmin):
             'fields': ('imagen', 'archivo_adjunto'),
             'classes': ('collapse',)
         }),
+        ('Información del Sistema', {
+            'fields': ('creado_por', 'estado'),
+            'classes': ('collapse',)
+        }),
         ('Estadísticas', {
-            'fields': ('estado', 'total_destinatarios', 'total_enviados', 'total_leidos', 'total_confirmados'),
+            'fields': ('total_destinatarios', 'total_enviados', 'total_leidos', 'total_confirmados'),
             'classes': ('collapse',)
         }),
     )
     
-    readonly_fields = ['total_destinatarios', 'total_enviados', 'total_leidos', 'total_confirmados']
+    readonly_fields = ['total_destinatarios', 'total_enviados', 'total_leidos', 'total_confirmados', 'creado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Asignar automáticamente el usuario que está creando la notificación"""
+        if not change:  # Solo para nuevos objetos
+            obj.creado_por = request.user
+        super().save_model(request, obj, form, change)
     
     def estado_coloreado(self, obj):
         colores = {

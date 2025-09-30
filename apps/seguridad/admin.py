@@ -73,12 +73,18 @@ class RegistroVisitanteAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('Información del Sistema', {
-            'fields': ('codigo_qr', 'registrado_por', 'observaciones'),
+            'fields': ('codigo_qr', 'observaciones'),
             'classes': ('collapse',)
         }),
     )
     
-    readonly_fields = ['codigo_qr', 'fecha_creacion', 'fecha_actualizacion']
+    readonly_fields = ['codigo_qr', 'fecha_creacion', 'fecha_actualizacion', 'registrado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Asignar automáticamente el usuario que está registrando"""
+        if not change:  # Solo para nuevos objetos
+            obj.registrado_por = request.user
+        super().save_model(request, obj, form, change)
     
     def nombre_completo(self, obj):
         return obj.nombre_completo
@@ -122,12 +128,18 @@ class AccesoVehiculoAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('Información Adicional', {
-            'fields': ('observaciones', 'registrado_por'),
+            'fields': ('observaciones',),
             'classes': ('collapse',)
         }),
     )
     
-    readonly_fields = ['fecha_creacion', 'fecha_actualizacion']
+    readonly_fields = ['fecha_creacion', 'fecha_actualizacion', 'registrado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Asignar automáticamente el usuario que está registrando"""
+        if not change:  # Solo para nuevos objetos
+            obj.registrado_por = request.user
+        super().save_model(request, obj, form, change)
     
     def marca_modelo(self, obj):
         return f"{obj.marca} {obj.modelo}" if obj.marca and obj.modelo else obj.marca or obj.modelo or '-'
@@ -255,13 +267,15 @@ class ConfiguracionIAAdmin(admin.ModelAdmin):
             'fields': ('generar_alertas', 'nivel_alerta_minimo'),
             'classes': ('collapse',)
         }),
-        ('Sistema', {
-            'fields': ('creado_por',),
-            'classes': ('collapse',)
-        }),
     )
     
-    readonly_fields = ['fecha_creacion', 'fecha_ultima_actualizacion']
+    readonly_fields = ['fecha_creacion', 'fecha_ultima_actualizacion', 'creado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Asignar automáticamente el usuario que está creando la configuración"""
+        if not change:  # Solo para nuevos objetos
+            obj.creado_por = request.user
+        super().save_model(request, obj, form, change)
     
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('creado_por')
@@ -299,12 +313,18 @@ class AnalisisPredictivoMorosidadAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('Seguimiento', {
-            'fields': ('valido_hasta', 'fue_preciso', 'generado_por'),
+            'fields': ('valido_hasta', 'fue_preciso'),
             'classes': ('collapse',)
         }),
     )
     
-    readonly_fields = ['fecha_analisis']
+    readonly_fields = ['fecha_analisis', 'generado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Asignar automáticamente el usuario que está generando el análisis"""
+        if not change:  # Solo para nuevos objetos
+            obj.generado_por = request.user
+        super().save_model(request, obj, form, change)
     
     def get_queryset(self, request):
         return super().get_queryset(request).select_related(

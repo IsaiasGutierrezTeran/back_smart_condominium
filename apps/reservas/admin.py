@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.db.models import Count, Avg
+from django.utils import timezone
 from .models import (
     TipoAreaComun, AreaComun, Reserva, ImagenAreaComun,
     ServicioAdicional, ReservaServicio, DisponibilidadEspecial
@@ -151,7 +152,7 @@ class AdminReserva(admin.ModelAdmin):
             'fields': ('costo_base', 'costo_servicios_adicionales', 'deposito_garantia', 'costo_total')
         }),
         ('Estado y Aprobación', {
-            'fields': ('estado', 'requiere_aprobacion', 'aprobado_por', 'fecha_aprobacion')
+            'fields': ('estado', 'requiere_aprobacion', 'fecha_aprobacion')
         }),
         ('Observaciones', {
             'fields': ('observaciones_usuario', 'observaciones_admin', 'motivo_cancelacion'),
@@ -163,7 +164,15 @@ class AdminReserva(admin.ModelAdmin):
         }),
     )
     
-    readonly_fields = ['codigo_reserva', 'duracion_minutos', 'fecha_creacion']
+    readonly_fields = ['codigo_reserva', 'duracion_minutos', 'fecha_creacion', 'aprobado_por']
+    
+    def save_model(self, request, obj, form, change):
+        """Manejar la aprobación automática"""
+        # Si el estado cambió a confirmada y no tiene aprobado_por, asignar el usuario actual
+        if obj.estado == 'confirmada' and not obj.aprobado_por:
+            obj.aprobado_por = request.user
+            obj.fecha_aprobacion = timezone.now()
+        super().save_model(request, obj, form, change)
     
     def estado_coloreado(self, obj):
         colores = {
