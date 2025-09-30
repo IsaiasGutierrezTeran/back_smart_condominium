@@ -4,15 +4,7 @@ from . import views
 app_name = 'comunicacion'
 
 urlpatterns = [
-    # Endpoints estándar para frontend
-    path('noticias/', views.ListaNoticias.as_view(), name='noticias-list'),
-    path('noticias/<int:pk>/', views.DetalleNoticia.as_view(), name='noticias-detail'),
-    path('avisos/', views.ListaAvisos.as_view(), name='avisos-list'),
-    path('avisos/<int:pk>/', views.DetalleAviso.as_view(), name='avisos-detail'),
-    path('anuncios/', views.ListaAnuncios.as_view(), name='anuncios-list'),
-    path('anuncios/<int:pk>/', views.DetalleAnuncio.as_view(), name='anuncios-detail'),
-    
-    # Endpoints adicionales existentes
+    # Categorías de notificaciones
     path('categorias/', views.ListaCategorias.as_view(), name='lista-categorias'),
     path('categorias/<int:pk>/', views.DetalleCategoria.as_view(), name='detalle-categoria'),
     
@@ -28,10 +20,14 @@ urlpatterns = [
     path('confirmar/<int:notificacion_id>/', views.confirmar_notificacion, name='confirmar-notificacion'),
     path('estadisticas/', views.estadisticas_notificaciones, name='estadisticas-notificaciones'),
     
-    # Avisos Generales
+    # Avisos Generales (usando las vistas que existen)
     path('avisos/', views.ListaAvisosGenerales.as_view(), name='lista-avisos'),
     path('avisos/<int:pk>/', views.DetalleAvisoGeneral.as_view(), name='detalle-aviso'),
     path('avisos/<int:aviso_id>/interactuar/', views.interactuar_aviso, name='interactuar-aviso'),
+    
+    # Alias para compatibilidad con frontend
+    path('noticias/', views.ListaNotificacionesAdmin.as_view(), name='noticias-list'),
+    path('anuncios/', views.ListaAvisosGenerales.as_view(), name='anuncios-list'),
     
     # Configuración
     path('configuracion/', views.ConfiguracionNotificacionUsuario.as_view(), name='configuracion-notificaciones'),
