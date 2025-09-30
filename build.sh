@@ -18,6 +18,11 @@ pip install -r requirements.txt
 echo "Verifying Django installation..."
 python -c "import django; print(f'Django version: {django.get_version()}')"
 
+# Verificar variables de entorno
+echo "Checking environment variables..."
+echo "DATABASE_URL set: $(if [ -n "$DATABASE_URL" ]; then echo 'YES'; else echo 'NO'; fi)"
+echo "DJANGO_SETTINGS_MODULE: $DJANGO_SETTINGS_MODULE"
+
 # Verificar configuraciones
 echo "Verifying Django configuration..."
 python -c "
@@ -29,6 +34,9 @@ from django.conf import settings
 print('Django configuration loaded successfully')
 print(f'DEBUG: {settings.DEBUG}')
 print(f'DATABASES configured: {len(settings.DATABASES)}')
+print(f'Database ENGINE: {settings.DATABASES[\"default\"][\"ENGINE\"]}')
+if 'HOST' in settings.DATABASES['default']:
+    print(f'Database HOST: {settings.DATABASES[\"default\"][\"HOST\"]}')
 "
 
 echo "Running migrations..."

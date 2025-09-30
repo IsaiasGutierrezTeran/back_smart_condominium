@@ -1,0 +1,834 @@
+# PROMPT COMPLETO PARA DESARROLLADOR FRONTEND REACT
+# SMART CONDOMINIUM - SISTEMA INTEGRAL DE GESTIÓN
+
+## 🎯 SOLICITUD ESPECÍFICA
+Necesito que desarrolles el proyecto frontend COMPLETO en React para Smart Condominium. 
+Quiero que me entregues TODOS los archivos, componentes, páginas y configuraciones necesarias.
+El proyecto debe incluir:
+- DISEÑO UX/UI PROFESIONAL con alta fidelidad visual
+- LOGOS personalizados y branding completo
+- USABILIDAD excepcional y experiencia de usuario intuitiva
+- RESPONSIVE design para todos los dispositivos
+- CÓDIGO COMPLETO y funcional, listo para ejecutar
+
+---
+
+## 🏢 INFORMACIÓN DEL PROYECTO
+
+### Backend Desplegado
+- URL Base: https://back-smart-condominium-1.onrender.com
+- API REST con Django + PostgreSQL
+- Autenticación JWT
+- 5 módulos principales: Autenticación, Finanzas, Comunicación, Reservas, Seguridad, Mantenimiento
+
+### Usuarios de Prueba
+1. Administrador: admin / admin123
+2. Residente: demo.residente / demo123  
+3. Seguridad: demo.seguridad / security123
+
+---
+
+## 🎨 ESPECIFICACIONES DE DISEÑO UX/UI
+
+### Identidad Visual
+- **Nombre**: Smart Condominium
+- **Concepto**: Modernidad, seguridad, tecnología, comunidad
+- **Paleta de colores**:
+  - Primario: #1565C0 (Azul corporativo profundo)
+  - Secundario: #0D47A1 (Azul oscuro)
+  - Acento: #FFC107 (Amarillo dorado)
+  - Éxito: #2E7D32 (Verde)
+  - Advertencia: #F57C00 (Naranja)
+  - Error: #C62828 (Rojo)
+  - Gris claro: #F5F5F5
+  - Gris medio: #9E9E9E
+  - Gris oscuro: #424242
+
+### Tipografía
+- **Principal**: Inter (Google Fonts)
+- **Secundaria**: Roboto (Material UI)
+- **Jerarquía**: H1 (32px), H2 (24px), H3 (20px), H4 (18px), Body (16px), Caption (14px)
+
+### Iconografía
+- Material Design Icons
+- Iconos personalizados para cada módulo
+- Iconografía consistente y significativa
+
+### Logotipo Requerido
+- Logo principal: "Smart Condominium" 
+- Versión horizontal y vertical
+- Versión en color y monocromática
+- Favicon para web
+- Diseño moderno que represente tecnología + hogar
+
+---
+
+## 👥 TIPOS DE USUARIO Y DASHBOARDS
+
+### 1. ADMINISTRADOR
+**Permisos**: Acceso total a todos los módulos
+**Dashboard debe incluir**:
+- Métricas generales del condominio
+- Gráficos de ocupación y finanzas
+- Alertas de seguridad
+- Estadísticas de mantenimiento
+- Gestión de usuarios
+- Reportes ejecutivos
+
+### 2. RESIDENTE  
+**Permisos**: Servicios personales y comunitarios
+**Dashboard debe incluir**:
+- Estado de cuenta personal
+- Próximas reservas
+- Noticias y avisos
+- Solicitudes de mantenimiento
+- Información de visitantes esperados
+
+### 3. PERSONAL DE SEGURIDAD
+**Permisos**: Módulo de seguridad completo
+**Dashboard debe incluir**:
+- Control de accesos en tiempo real
+- Visitantes del día
+- Incidentes recientes
+- Cámaras de seguridad (placeholder)
+- Reportes de turno
+
+### 4. PERSONAL DE MANTENIMIENTO
+**Permisos**: Solicitudes y reportes de mantenimiento
+**Dashboard debe incluir**:
+- Solicitudes pendientes
+- Calendario de mantenimiento
+- Inventario básico
+- Reportes de trabajo
+
+---
+
+## 🔗 ENDPOINTS COMPLETOS DE LA API
+
+### AUTENTICACIÓN
+```
+POST /api/auth/login/
+POST /api/auth/register/
+POST /api/auth/token/refresh/
+POST /api/auth/logout/
+GET  /api/auth/profile/
+GET  /api/auth/users/
+POST /api/auth/change-password/
+```
+
+### FINANZAS
+```
+GET/POST    /api/finanzas/cuotas/
+GET/PUT/DEL /api/finanzas/cuotas/{id}/
+GET/POST    /api/finanzas/pagos/
+GET/PUT/DEL /api/finanzas/pagos/{id}/
+GET/POST    /api/finanzas/gastos/
+GET/PUT/DEL /api/finanzas/gastos/{id}/
+POST        /api/finanzas/reporte-financiero/
+GET         /api/finanzas/estadisticas-pagos/
+```
+
+### COMUNICACIÓN
+```
+GET/POST    /api/comunicacion/noticias/
+GET/PUT/DEL /api/comunicacion/noticias/{id}/
+GET/POST    /api/comunicacion/avisos/
+GET/PUT/DEL /api/comunicacion/avisos/{id}/
+GET/POST    /api/comunicacion/anuncios/
+GET/PUT/DEL /api/comunicacion/anuncios/{id}/
+```
+
+### RESERVAS
+```
+GET/POST    /api/reservas/espacios/
+GET/PUT/DEL /api/reservas/espacios/{id}/
+GET/POST    /api/reservas/reservas/
+GET/PUT/DEL /api/reservas/reservas/{id}/
+GET         /api/reservas/disponibilidad/{espacio_id}/
+GET         /api/reservas/mis-reservas/
+```
+
+### SEGURIDAD
+```
+GET/POST    /api/seguridad/visitantes/
+GET/PUT/DEL /api/seguridad/visitantes/{id}/
+GET/POST    /api/seguridad/tipos-visitantes/
+GET/POST    /api/seguridad/vehiculos/
+GET/PUT/DEL /api/seguridad/vehiculos/{id}/
+GET/POST    /api/seguridad/accesos/
+GET/POST    /api/seguridad/incidentes/
+GET/PUT/DEL /api/seguridad/incidentes/{id}/
+POST        /api/seguridad/reconocimiento-facial/
+POST        /api/seguridad/ocr-placa/
+POST        /api/seguridad/detectar-anomalias/
+GET         /api/seguridad/dashboard/
+POST        /api/seguridad/reporte-periodo/
+```
+
+### MANTENIMIENTO
+```
+GET/POST    /api/mantenimiento/solicitudes/
+GET/PUT/DEL /api/mantenimiento/solicitudes/{id}/
+GET/POST    /api/mantenimiento/tipos-solicitud/
+GET/POST    /api/mantenimiento/reportes/
+GET         /api/mantenimiento/estadisticas/
+```
+
+---
+
+## 🛠️ STACK TECNOLÓGICO REQUERIDO
+
+### Dependencias Principales
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "axios": "^1.3.0",
+    "@mui/material": "^5.11.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/x-date-pickers": "^5.0.0",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "react-hook-form": "^7.43.0",
+    "@tanstack/react-query": "^4.24.0",
+    "date-fns": "^2.29.0",
+    "recharts": "^2.5.0",
+    "react-webcam": "^7.0.1",
+    "jwt-decode": "^3.1.2",
+    "react-hot-toast": "^2.4.0",
+    "framer-motion": "^10.0.0",
+    "react-dropzone": "^14.2.0",
+    "@mui/x-data-grid": "^5.17.0"
+  }
+}
+```
+
+---
+
+## 📁 ESTRUCTURA COMPLETA DEL PROYECTO
+
+### Estructura de Carpetas Requerida
+```
+smart-condominium-frontend/
+├── public/
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── index.html
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── logo/
+│   │   │   ├── icons/
+│   │   │   └── backgrounds/
+│   │   └── styles/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Layout/
+│   │   │   ├── Header/
+│   │   │   ├── Sidebar/
+│   │   │   ├── LoadingSpinner/
+│   │   │   ├── DataTable/
+│   │   │   ├── ConfirmDialog/
+│   │   │   └── NotificationSystem/
+│   │   ├── auth/
+│   │   │   ├── LoginForm/
+│   │   │   ├── RegisterForm/
+│   │   │   ├── ProtectedRoute/
+│   │   │   └── ChangePasswordForm/
+│   │   ├── dashboard/
+│   │   │   ├── AdminDashboard/
+│   │   │   ├── ResidentDashboard/
+│   │   │   ├── SecurityDashboard/
+│   │   │   ├── MaintenanceDashboard/
+│   │   │   └── MetricCard/
+│   │   ├── finance/
+│   │   │   ├── CuotasList/
+│   │   │   ├── PagosList/
+│   │   │   ├── PaymentForm/
+│   │   │   ├── FinanceReports/
+│   │   │   └── PaymentStatus/
+│   │   ├── communication/
+│   │   │   ├── NewsList/
+│   │   │   ├── NewsForm/
+│   │   │   ├── AnnouncementsList/
+│   │   │   ├── AnnouncementForm/
+│   │   │   └── NotificationCenter/
+│   │   ├── reservations/
+│   │   │   ├── SpacesList/
+│   │   │   ├── SpaceForm/
+│   │   │   ├── ReservationForm/
+│   │   │   ├── MyReservations/
+│   │   │   ├── Calendar/
+│   │   │   └── AvailabilityChecker/
+│   │   ├── security/
+│   │   │   ├── VisitorsList/
+│   │   │   ├── VisitorForm/
+│   │   │   ├── VehiclesList/
+│   │   │   ├── VehicleForm/
+│   │   │   ├── IncidentsList/
+│   │   │   ├── IncidentForm/
+│   │   │   ├── AccessList/
+│   │   │   ├── FacialRecognition/
+│   │   │   ├── PlateOCR/
+│   │   │   └── SecurityReports/
+│   │   └── maintenance/
+│   │       ├── RequestsList/
+│   │       ├── RequestForm/
+│   │       ├── MaintenanceReports/
+│   │       └── RequestStatus/
+│   ├── contexts/
+│   │   ├── AuthContext.js
+│   │   ├── ThemeContext.js
+│   │   └── NotificationContext.js
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   │   ├── useApi.js
+│   │   ├── useLocalStorage.js
+│   │   └── usePermissions.js
+│   ├── pages/
+│   │   ├── Login.js
+│   │   ├── Register.js
+│   │   ├── Dashboard.js
+│   │   ├── Profile.js
+│   │   ├── Finance/
+│   │   ├── Communication/
+│   │   ├── Reservations/
+│   │   ├── Security/
+│   │   ├── Maintenance/
+│   │   └── NotFound.js
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   ├── financeService.js
+│   │   ├── communicationService.js
+│   │   ├── reservationService.js
+│   │   ├── securityService.js
+│   │   └── maintenanceService.js
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   ├── validators.js
+│   │   └── formatters.js
+│   ├── theme/
+│   │   ├── index.js
+│   │   ├── palette.js
+│   │   ├── typography.js
+│   │   └── components.js
+│   ├── App.js
+│   ├── index.js
+│   └── index.css
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── README.md
+└── yarn.lock
+```
+
+---
+
+## 🎨 ESPECIFICACIONES DE INTERFAZ
+
+### Componentes UI Requeridos
+
+#### Header/Navigation
+- Logo de Smart Condominium prominente
+- Menú de navegación adaptativo según rol
+- Notificaciones en tiempo real
+- Avatar de usuario con menú desplegable
+- Indicador de estado de conexión
+
+#### Sidebar Navigation
+- Iconos personalizados para cada módulo
+- Navegación colapsible
+- Indicadores de estado activo
+- Tooltips informativos
+
+#### Dashboard Cards
+- Métricas con iconos representativos
+- Gráficos interactivos (Recharts)
+- Animaciones suaves (Framer Motion)
+- Estados de carga elegantes
+
+#### Data Tables
+- Paginación avanzada
+- Filtros múltiples
+- Ordenamiento por columnas
+- Acciones en masa
+- Exportación de datos
+
+#### Forms
+- Validación en tiempo real
+- Campos inteligentes
+- Upload de archivos con preview
+- Guardado automático de borradores
+
+### Pantallas Específicas Requeridas
+
+#### 1. LOGIN & REGISTRO
+- Diseño moderno con gradientes
+- Formularios con validación visual
+- Opción "Recordar usuario"
+- Enlaces de recuperación de contraseña
+- Transiciones suaves entre formularios
+
+#### 2. DASHBOARD PRINCIPAL
+- Vista diferenciada por tipo de usuario
+- Widgets configurables
+- Métricas en tiempo real
+- Accesos rápidos personalizados
+- Gráficos interactivos
+
+#### 3. MÓDULO FINANZAS
+- Estado de cuenta detallado
+- Historial de pagos con filtros
+- Gráficos de gastos por categoría
+- Alertas de vencimiento
+- Generación de reportes PDF
+
+#### 4. MÓDULO COMUNICACIÓN
+- Feed de noticias con imágenes
+- Sistema de comentarios
+- Notificaciones push
+- Calendario de eventos
+- Búsqueda avanzada
+
+#### 5. MÓDULO RESERVAS
+- Calendario interactivo
+- Vista de disponibilidad en tiempo real
+- Formulario de reserva intuitivo
+- Confirmaciones automáticas
+- Historial de reservas
+
+#### 6. MÓDULO SEGURIDAD
+- Lista de visitantes con fotos
+- Control de acceso vehicular
+- Registro de incidentes
+- Cámara web para reconocimiento facial
+- Upload de imágenes para OCR
+
+#### 7. MÓDULO MANTENIMIENTO
+- Sistema de tickets
+- Seguimiento de solicitudes
+- Calendario de mantenimiento
+- Reportes con imágenes
+- Estados visuales claros
+
+---
+
+## 🔐 SISTEMA DE AUTENTICACIÓN
+
+### Configuración JWT Completa
+```javascript
+// src/services/api.js - CONFIGURACIÓN COMPLETA
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
+const API_BASE_URL = 'https://back-smart-condominium-1.onrender.com';
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Interceptor para agregar token
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Interceptor para refresh token automático
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (refreshToken) {
+        try {
+          const response = await axios.post(`${API_BASE_URL}/api/auth/token/refresh/`, {
+            refresh: refreshToken
+          });
+          
+          localStorage.setItem('accessToken', response.data.access);
+          return api(originalRequest);
+        } catch (refreshError) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          window.location.href = '/login';
+        }
+      }
+    }
+    
+    return Promise.reject(error);
+  }
+);
+
+export default api;
+```
+
+### Context de Autenticación Completo
+```javascript
+// src/contexts/AuthContext.js - IMPLEMENTACIÓN COMPLETA
+import { createContext, useContext, useReducer, useEffect } from 'react';
+import api from '../services/api';
+import { jwtDecode } from 'jwt-decode';
+
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within AuthProvider');
+  }
+  return context;
+};
+
+const authReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN_SUCCESS':
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isAuthenticated: true,
+        loading: false,
+        error: null
+      };
+    case 'LOGIN_ERROR':
+      return {
+        ...state,
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        error: action.payload
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        error: null
+      };
+    case 'LOADING':
+      return { ...state, loading: action.payload };
+    case 'CLEAR_ERROR':
+      return { ...state, error: null };
+    default:
+      return state;
+  }
+};
+
+export const AuthProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, {
+    user: null,
+    token: null,
+    isAuthenticated: false,
+    loading: true,
+    error: null
+  });
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = () => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        if (decoded.exp * 1000 > Date.now()) {
+          dispatch({
+            type: 'LOGIN_SUCCESS',
+            payload: { user: decoded, token }
+          });
+        } else {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          dispatch({ type: 'LOGOUT' });
+        }
+      } catch (error) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        dispatch({ type: 'LOGOUT' });
+      }
+    } else {
+      dispatch({ type: 'LOGOUT' });
+    }
+  };
+
+  const login = async (username, password) => {
+    dispatch({ type: 'LOADING', payload: true });
+    try {
+      const response = await api.post('/api/auth/login/', {
+        username,
+        password
+      });
+      
+      const { access, refresh } = response.data;
+      const decoded = jwtDecode(access);
+      
+      localStorage.setItem('accessToken', access);
+      localStorage.setItem('refreshToken', refresh);
+      
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: { user: decoded, token: access }
+      });
+      
+      return { success: true };
+    } catch (error) {
+      const errorMessage = error.response?.data?.detail || 'Error de autenticación';
+      dispatch({
+        type: 'LOGIN_ERROR',
+        payload: errorMessage
+      });
+      return { success: false, error: errorMessage };
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await api.post('/api/auth/logout/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    } finally {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      dispatch({ type: 'LOGOUT' });
+    }
+  };
+
+  const clearError = () => {
+    dispatch({ type: 'CLEAR_ERROR' });
+  };
+
+  return (
+    <AuthContext.Provider value={{
+      ...state,
+      login,
+      logout,
+      clearError,
+      checkAuthStatus
+    }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+```
+
+---
+
+## 🎯 FUNCIONALIDADES ESPECÍFICAS POR MÓDULO
+
+### DASHBOARD INTERACTIVO
+- Métricas en tiempo real con WebSockets (preparado para futuro)
+- Gráficos de barras, líneas y donut con Recharts
+- Widgets arrastrables y redimensionables
+- Notificaciones toast personalizadas
+- Tema claro/oscuro
+
+### MÓDULO FINANZAS AVANZADO
+- Tabla de cuotas con filtros múltiples
+- Calculadora de mora automática
+- Gráficos de tendencias de pago
+- Exportación a Excel/PDF
+- Estados visuales de pago (pendiente, pagado, vencido)
+
+### COMUNICACIÓN RICA
+- Editor de texto enriquecido para noticias
+- Upload múltiple de imágenes
+- Sistema de comentarios anidados
+- Notificaciones push en navegador
+- Filtros por categoría y fecha
+
+### RESERVAS INTELIGENTES
+- Calendario con vista mensual/semanal/diaria
+- Verificación de disponibilidad en tiempo real
+- Reservas recurrentes
+- Recordatorios automáticos
+- Código QR para confirmación
+
+### SEGURIDAD CON IA
+- Captura de cámara web para fotos
+- Preview de imágenes antes de subir
+- Lista de visitantes con búsqueda inteligente
+- Mapa de incidentes (integración futura con Google Maps)
+- Timeline de eventos de seguridad
+
+### MANTENIMIENTO EFICIENTE
+- Sistema de tickets con prioridades
+- Upload de fotos del problema
+- Asignación automática de técnicos
+- Seguimiento en tiempo real
+- Historial completo de mantenimiento
+
+---
+
+## 📱 DISEÑO RESPONSIVE
+
+### Breakpoints
+- Mobile: 320px - 768px
+- Tablet: 768px - 1024px
+- Desktop: 1024px+
+
+### Adaptaciones por Dispositivo
+- **Mobile**: Navegación por bottom tabs, cards apiladas, formularios simplificados
+- **Tablet**: Sidebar colapsible, layout híbrido, menús contextuales
+- **Desktop**: Sidebar fija, múltiples columnas, shortcuts de teclado
+
+---
+
+## 🔧 CONFIGURACIONES TÉCNICAS
+
+### Variables de Entorno
+```
+REACT_APP_API_BASE_URL=https://back-smart-condominium-1.onrender.com
+REACT_APP_ENVIRONMENT=production
+REACT_APP_VERSION=1.0.0
+REACT_APP_COMPANY_NAME=Smart Condominium
+```
+
+### Scripts de Package.json
+```json
+{
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "format": "prettier --write src/**/*.{js,jsx,css,md}"
+  }
+}
+```
+
+---
+
+## 🎨 GUÍA DE ESTILO DETALLADA
+
+### Componentes de Botones
+- Primary: Azul con hover y focus states
+- Secondary: Outline con transiciones
+- Danger: Rojo para acciones destructivas
+- Tamaños: small (32px), medium (40px), large (48px)
+
+### Cards y Contenedores
+- Border radius: 8px
+- Box shadow: elevation levels (1-5)
+- Padding interno: 16px, 24px, 32px
+- Hover effects con transform scale
+
+### Formularios
+- Inputs con floating labels
+- Validación visual (error, success, warning)
+- Helper text descriptivo
+- Iconos contextuales
+
+### Loading States
+- Skeleton loaders para contenido
+- Spinners para acciones
+- Progress bars para uploads
+- Shimmer effects
+
+---
+
+## 📋 CHECKLIST DE ENTREGABLES
+
+### ✅ ARCHIVOS OBLIGATORIOS
+- [ ] Configuración completa del proyecto (package.json, etc.)
+- [ ] Sistema de autenticación JWT funcional
+- [ ] Todos los componentes listados en la estructura
+- [ ] Todas las páginas para cada módulo
+- [ ] Servicios de API para todos los endpoints
+- [ ] Context providers (Auth, Theme, Notifications)
+- [ ] Hooks personalizados
+- [ ] Tema completo con Material-UI
+- [ ] Configuración de rutas completa
+- [ ] Componentes de layout (Header, Sidebar, Footer)
+
+### ✅ FUNCIONALIDADES OBLIGATORIAS
+- [ ] Login/Logout con JWT
+- [ ] Dashboards diferenciados por rol
+- [ ] CRUD completo para cada módulo
+- [ ] Formularios con validación
+- [ ] Tablas con paginación y filtros
+- [ ] Upload de archivos
+- [ ] Notificaciones toast
+- [ ] Loading states
+- [ ] Error handling
+- [ ] Responsive design completo
+
+### ✅ ELEMENTOS VISUALES OBLIGATORIOS
+- [ ] Logo de Smart Condominium
+- [ ] Iconos personalizados para cada módulo
+- [ ] Paleta de colores aplicada consistentemente
+- [ ] Tipografía jerárquica
+- [ ] Animaciones y transiciones
+- [ ] Estados hover y focus
+- [ ] Feedback visual para todas las acciones
+
+---
+
+## 🚀 INSTRUCCIONES DE ENTREGA
+
+### LO QUE NECESITO RECIBIR:
+
+1. **CÓDIGO FUENTE COMPLETO**
+   - Todos los archivos mencionados en la estructura
+   - Código comentado y bien organizado
+   - Sin errores de compilación
+
+2. **ASSETS VISUALES**
+   - Logo en diferentes formatos (SVG, PNG)
+   - Iconos personalizados
+   - Imágenes placeholder de alta calidad
+
+3. **DOCUMENTACIÓN**
+   - README.md con instrucciones de instalación
+   - Guía de uso básica
+   - Lista de credenciales de prueba
+
+4. **CONFIGURACIÓN**
+   - package.json completo
+   - Archivos de configuración (.env.example)
+   - Scripts de build y desarrollo
+
+### FORMATO DE ENTREGA:
+- Archivo ZIP con todo el proyecto
+- Estructura de carpetas exacta como se especifica
+- Instrucciones claras para ejecutar
+- Screenshots de las pantallas principales
+
+---
+
+## 💡 NOTAS IMPORTANTES
+
+1. **TODOS LOS ENDPOINTS** listados deben estar integrados y funcionando
+2. **TODOS LOS TIPOS DE USUARIO** deben tener sus interfaces específicas
+3. **DISEÑO UX/UI** debe ser profesional y moderno
+4. **RESPONSIVE** en todos los dispositivos
+5. **CÓDIGO LIMPIO** y bien estructurado
+6. **SIN ERRORES** de consola o compilación
+7. **FUNCIONALIDAD COMPLETA** - no mocks ni placeholders
+
+### RESULTADO ESPERADO:
+Una aplicación React COMPLETA, FUNCIONAL y PROFESIONAL que permita gestionar integralmente un condominio inteligente, con diseño excepcional y experiencia de usuario superior.
+
+**ENTREGA COMPLETA DEL PROYECTO - NO OMITIR NINGÚN ARCHIVO O FUNCIONALIDAD**

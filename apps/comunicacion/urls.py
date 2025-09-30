@@ -4,7 +4,15 @@ from . import views
 app_name = 'comunicacion'
 
 urlpatterns = [
-    # Categorías
+    # Endpoints estándar para frontend
+    path('noticias/', views.ListaNoticias.as_view(), name='noticias-list'),
+    path('noticias/<int:pk>/', views.DetalleNoticia.as_view(), name='noticias-detail'),
+    path('avisos/', views.ListaAvisos.as_view(), name='avisos-list'),
+    path('avisos/<int:pk>/', views.DetalleAviso.as_view(), name='avisos-detail'),
+    path('anuncios/', views.ListaAnuncios.as_view(), name='anuncios-list'),
+    path('anuncios/<int:pk>/', views.DetalleAnuncio.as_view(), name='anuncios-detail'),
+    
+    # Endpoints adicionales existentes
     path('categorias/', views.ListaCategorias.as_view(), name='lista-categorias'),
     path('categorias/<int:pk>/', views.DetalleCategoria.as_view(), name='detalle-categoria'),
     

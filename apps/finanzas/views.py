@@ -537,3 +537,102 @@ def aplicar_interes_moratorio(request):
             'fecha_corte': fecha_limite
         }
     })
+
+# ================ VISTAS ESTÁNDAR PARA FRONTEND ================
+
+class ListaCuotas(generics.ListCreateAPIView):
+    """
+    Lista de cuotas (equivalente a pagos pendientes)
+    """
+    serializer_class = SerializadorPago
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return Pago.objects.filter(estado='pendiente')
+
+class DetalleCuota(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Detalle de una cuota específica
+    """
+    queryset = Pago.objects.all()
+    serializer_class = SerializadorPago
+    permission_classes = [permissions.IsAuthenticated]
+
+class ListaPagos(generics.ListCreateAPIView):
+    """
+    Lista de todos los pagos
+    """
+    queryset = Pago.objects.all()
+    serializer_class = SerializadorPago
+    permission_classes = [permissions.IsAuthenticated]
+
+class ListaGastos(generics.ListCreateAPIView):
+    """
+    Lista de gastos (equivalente a multas)
+    """
+    queryset = Multa.objects.all()
+    serializer_class = SerializadorMulta
+    permission_classes = [permissions.IsAuthenticated]
+
+class DetalleGasto(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Detalle de un gasto específico
+    """
+    queryset = Multa.objects.all()
+    serializer_class = SerializadorMulta
+    permission_classes = [permissions.IsAuthenticated]
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def reporte_financiero(request):
+    """
+    Generar reporte financiero
+    """
+    fecha_inicio = request.data.get('fecha_inicio')
+    fecha_fin = request.data.get('fecha_fin')
+    
+    # Obtener datos financieros del período
+    pagos = Pago.objects.filter(
+        fecha_creacion__range=[fecha_inicio, fecha_fin]
+    ) if fecha_inicio and fecha_fin else Pago.objects.all()
+    
+    reporte = {
+        'periodo': {
+            'inicio': fecha_inicio,
+            'fin': fecha_fin
+        },
+        'resumen': {
+            'total_pagos': pagos.filter(estado='pagado').count(),
+            'total_pendientes': pagos.filter(estado='pendiente').count(),
+            'monto_recaudado': pagos.filter(estado='pagado').aggregate(
+                total=Sum('monto')
+            )['total'] or 0,
+            'monto_pendiente': pagos.filter(estado='pendiente').aggregate(
+                total=Sum('monto')
+            )['total'] or 0
+        }
+    }
+    
+    return Response(reporte)
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def estadisticas_pagos(request):
+    """
+    Estadísticas de pagos
+    """
+    total_pagos = Pago.objects.count()
+    pagos_completados = Pago.objects.filter(estado='pagado').count()
+    pagos_pendientes = Pago.objects.filter(estado='pendiente').count()
+    
+    estadisticas = {
+        'total_pagos': total_pagos,
+        'pagos_completados': pagos_completados,
+        'pagos_pendientes': pagos_pendientes,
+        'porcentaje_completados': (pagos_completados / total_pagos * 100) if total_pagos > 0 else 0,
+        'monto_total_recaudado': Pago.objects.filter(estado='pagado').aggregate(
+            total=Sum('monto')
+        )['total'] or 0
+    }
+    
+    return Response(estadisticas)

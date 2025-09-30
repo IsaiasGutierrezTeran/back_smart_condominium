@@ -4,7 +4,15 @@ from . import views
 app_name = 'reservas'
 
 urlpatterns = [
-    # Tipos de áreas comunes
+    # Endpoints estándar para frontend
+    path('espacios/', views.ListaEspacios.as_view(), name='espacios-list'),
+    path('espacios/<int:pk>/', views.DetalleEspacio.as_view(), name='espacios-detail'),
+    path('reservas/', views.ListaReservas.as_view(), name='reservas-list'),
+    path('reservas/<int:pk>/', views.DetalleReservaStandard.as_view(), name='reservas-detail'),
+    path('disponibilidad/<int:espacio_id>/', views.disponibilidad_espacio, name='disponibilidad-espacio'),
+    path('mis-reservas/', views.ListaReservasUsuario.as_view(), name='mis-reservas'),
+    
+    # Endpoints adicionales existentes
     path('tipos-areas/', views.ListaTiposAreaComun.as_view(), name='lista-tipos-areas'),
     
     # Áreas comunes - Usuario (Casos de Uso 8: Consultar disponibilidad)

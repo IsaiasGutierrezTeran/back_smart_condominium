@@ -9,12 +9,31 @@ import dj_database_url
 DEBUG = False
 ALLOWED_HOSTS = ['*']  # Permitir todos los hosts temporalmente
 
-# Database para producción
+# Database para producción - Usar DATABASE_URL de Render
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
+    # Usar la base de datos de Render
     DATABASES = {
-        'default': dj_database_url.parse(DATABASE_URL)
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
+else:
+    # Fallback - no debería usarse en producción
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'condominiobd',
+            'USER': 'postgres',
+            'PASSWORD': '250203is',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
+print(f"DATABASE_URL disponible: {'Sí' if DATABASE_URL else 'No'}")
+if DATABASE_URL:
+    print(f"Usando base de datos de Render")
+else:
+    print(f"Usando base de datos local (fallback)")
 
 # Static files con WhiteNoise
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
