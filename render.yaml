@@ -8,7 +8,7 @@ services:
     name: smart-condominium
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn smart_condominium.wsgi:application"
+    startCommand: "gunicorn -c gunicorn.conf.py"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -18,3 +18,7 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+      - key: DJANGO_SETTINGS_MODULE
+        value: smart_condominium.settings.production
+      - key: PYTHONPATH
+        value: /opt/render/project/src
