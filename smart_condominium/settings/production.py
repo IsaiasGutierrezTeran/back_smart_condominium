@@ -63,10 +63,13 @@ SECURE_HSTS_PRELOAD = True
 # CORS settings para React/Flutter
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React development
+    "http://localhost:3000",  # React development (TU FRONTEND)
     "http://localhost:3001",  # React production build
-    "https://tu-frontend.vercel.app",  # Tu frontend deployed
-    "https://tu-frontend.netlify.app",  # Alternativa Netlify
+    "http://127.0.0.1:3000",  # React development alternativo
+    "http://127.0.0.1:3001",  # React production build alternativo
+    # Agregar URLs de producción cuando despliegues el frontend
+    # "https://tu-frontend.vercel.app",
+    # "https://tu-frontend.netlify.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True

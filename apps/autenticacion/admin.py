@@ -9,9 +9,26 @@ class AdminUsuario(UserAdmin):
     search_fields = ('email', 'username', 'first_name', 'last_name')
     ordering = ('email',)
     
-    fieldsets = UserAdmin.fieldsets + (
-        ('Información Adicional', {'fields': ('telefono',)}),
+    # Configurar fieldsets para el modelo personalizado
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Información Personal', {'fields': ('first_name', 'last_name', 'telefono')}),
+        ('Permisos', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Fechas Importantes', {'fields': ('last_login', 'date_joined')}),
     )
+    
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'telefono'),
+        }),
+    )
+    
+    # Configurar el username automáticamente
+    def save_model(self, request, obj, form, change):
+        if not change:  # Solo para nuevos usuarios
+            obj.username = obj.email
+        super().save_model(request, obj, form, change)
 
 @admin.register(PerfilUsuario)
 class AdminPerfilUsuario(admin.ModelAdmin):

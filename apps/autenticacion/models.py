@@ -6,7 +6,7 @@ class Usuario(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Correo Electrónico")
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = []  # Sin campos requeridos adicionales
 
     class Meta:
         verbose_name = "Usuario"
