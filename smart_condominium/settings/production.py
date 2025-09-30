@@ -1,5 +1,6 @@
 """
 Configuración para producción en Render
+Última actualización: 30/09/2025 - Sistema completamente funcional
 """
 from .base import *
 import os
