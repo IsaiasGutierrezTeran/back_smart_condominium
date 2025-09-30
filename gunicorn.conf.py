@@ -26,6 +26,11 @@ access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
 # Configuración de aplicación
 wsgi_module = "smart_condominium.wsgi:application"
 
+# Variables de entorno
+raw_env = [
+    'DJANGO_SETTINGS_MODULE=smart_condominium.settings.production_minimal'
+]
+
 # Preload para mejor rendimiento
 preload_app = True
 

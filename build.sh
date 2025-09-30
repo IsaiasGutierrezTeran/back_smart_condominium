@@ -22,7 +22,7 @@ python -c "import django; print(f'Django version: {django.get_version()}')"
 echo "Verifying Django configuration..."
 python -c "
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'smart_condominium.settings.production')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'smart_condominium.settings.production_minimal')
 import django
 django.setup()
 from django.conf import settings
@@ -32,12 +32,12 @@ print(f'DATABASES configured: {len(settings.DATABASES)}')
 "
 
 echo "Running migrations..."
-python manage.py migrate --settings=smart_condominium.settings.production
+python manage.py migrate --settings=smart_condominium.settings.production_minimal
 
 echo "Collecting static files..."
-python manage.py collectstatic --noinput --settings=smart_condominium.settings.production
+python manage.py collectstatic --noinput --settings=smart_condominium.settings.production_minimal
 
 echo "Creating default users..."
-python manage.py create_default_users --settings=smart_condominium.settings.production || echo "Warning: Could not create default users"
+python manage.py create_default_users --settings=smart_condominium.settings.production_minimal || echo "Warning: Could not create default users"
 
 echo "Build completed successfully!"

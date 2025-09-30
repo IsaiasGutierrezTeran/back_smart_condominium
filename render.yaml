@@ -19,6 +19,6 @@ services:
       - key: WEB_CONCURRENCY
         value: 4
       - key: DJANGO_SETTINGS_MODULE
-        value: smart_condominium.settings.production
+        value: smart_condominium.settings.production_minimal
       - key: PYTHONPATH
         value: /opt/render/project/src

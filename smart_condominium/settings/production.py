@@ -81,42 +81,17 @@ CORS_ALLOWED_HEADERS = [
     'x-requested-with',
 ]
 
-# Logging para producción - Solo console para Render
+# Logging completamente deshabilitado para evitar problemas
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
+    'disable_existing_loggers': True,
     'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+        'null': {
+            'class': 'logging.NullHandler',
         },
     },
     'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'smart_condominium': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
+        'handlers': ['null'],
     },
 }
 
